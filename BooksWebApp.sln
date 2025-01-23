@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksWebApp", "BooksWebApp\BooksWebApp.csproj", "{ACBF6C81-FC93-450E-A431-63A54C8A1515}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ACBF6C81-FC93-450E-A431-63A54C8A1515}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACBF6C81-FC93-450E-A431-63A54C8A1515}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACBF6C81-FC93-450E-A431-63A54C8A1515}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACBF6C81-FC93-450E-A431-63A54C8A1515}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

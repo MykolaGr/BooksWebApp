@@ -1,0 +1,36 @@
+@model BooksWebApp.Controllers.EditStatusViewModel
+
+@{
+ViewData["Title"] = "Edit Order Status";
+}
+
+<h2>Edit Order Status</h2>
+
+<form asp-action="EditStatus" method="post">
+    <input type="hidden" name="OrderId" value="@Model.OrderId" />
+    <div class="form-group">
+        <label>Order ID</label>
+        <input type="text" class="form-control" value="@Model.OrderId" disabled/>
+    </div>
+
+    <div class="form-group">
+        <label>Current Status</label>
+        <input type="text" class="form-control" value="@Model.CurrentStatus" disabled/>
+    </div>
+
+    <div class="form-group">
+        <label for="NewStatusId">New Status</label>
+        <select class="form-control" id="NewStatusId" name="NewStatusId">
+            <option value="">---</option>
+            @foreach (var status in (List<BooksWebApp.Models.Books.OrderStatus>)ViewBag.Statuses)
+            {
+                <option value="@status.StatusId" selected="@(status.StatusId == Model.NewStatusId ? "selected" : null)">
+                    @status.StatusValue
+                </option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a asp-action="Orders" asp-route-id="@Model.CustomerId" class="btn btn-secondary">Cancel</a>
+</form>

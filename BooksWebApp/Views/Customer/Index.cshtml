@@ -1,0 +1,61 @@
+@model PagingListAsync<BooksWebApp.ViewModels.CustomerViewModel>
+
+@{
+ViewData["Title"] = "Customer List";
+}
+
+<h2>Customer List</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add Customer</a>
+</p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Data.FirstOrDefault().FirstName)</th>
+        <th>@Html.DisplayNameFor(model => model.Data.FirstOrDefault().LastName)</th>
+        <th>@Html.DisplayNameFor(model => model.Data.FirstOrDefault().Email)</th>
+        <th>@Html.DisplayNameFor(model => model.Data.FirstOrDefault().CountryName)</th>
+        <th>@Html.DisplayNameFor(model => model.Data.FirstOrDefault().OrderCount)</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Data)
+    {
+    <tr>
+        <td>@Html.DisplayFor(_ => item.FirstName)</td>
+        <td>@Html.DisplayFor(_ => item.LastName)</td>
+        <td>@Html.DisplayFor(_ => item.Email)</td>
+        <td>@Html.DisplayFor(_ => item.CountryName)</td>
+        <td>
+            <a asp-action="Orders" asp-route-id="@item.CustomerId">
+                @(item.OrderCount > 0 ? item.OrderCount.ToString() : "0")
+            </a>
+        </td>
+        <td>
+            <a asp-action="Edit" asp-route-id="@item.CustomerId">Edit</a> |
+            <a asp-action="Delete" asp-route-id="@item.CustomerId">Delete</a>
+        </td>
+    </tr>
+    }
+    </tbody>
+</table>
+
+<div class="d-flex justify-content-center mt-4">
+    @if (!Model.IsFirst)
+    {
+    <a asp-action="Index" asp-route-page="1" class="btn btn-light mx-1">First</a>
+    <a asp-action="Index" asp-route-page="@(Model.Page - 1)" class="btn btn-light mx-1">Previous</a>
+    }
+    @if (!Model.IsLast)
+    {
+    <a asp-action="Index" asp-route-page="@(Model.Page + 1)" class="btn btn-light mx-1">Next</a>
+    <a asp-action="Index" asp-route-page="@(Model.TotalPages)" class="btn btn-light mx-1">Last</a>
+    }
+</div>
+
+<div class="d-flex justify-content-center mt-2">
+    <span>Page @Model.Page of @Model.TotalPages</span>
+</div>

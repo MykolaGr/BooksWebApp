@@ -1,0 +1,34 @@
+@model IEnumerable<BooksWebApp.Controllers.OrderViewModel>
+
+@{
+    ViewData["Title"] = "Customer Orders";
+}
+
+<h2>Orders for @ViewBag.CustomerName</h2>
+
+<p>
+    <a asp-controller="Customer" asp-action="Index" class="btn btn-secondary">Back to Customers</a>
+</p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.First().OrderId)</th>
+        <th>@Html.DisplayNameFor(model => model.First().OrderDate)</th>
+        <th>Details</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var order in Model)
+    {
+        <tr>
+            <td>@order.OrderId</td>
+            <td>@order.OrderDate.ToString("yyyy-MM-dd HH:mm")</td>
+            <td>
+                <a asp-action="EditStatus" asp-route-id="@order.OrderId" class="btn btn-primary">View Details</a>
+            </td>
+
+        </tr>
+    }
+    </tbody>
+</table>
